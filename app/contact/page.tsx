@@ -1,0 +1,7 @@
+"use client";
+import { useState } from "react";
+export default function Contact() {
+  const [sent, setSent] = useState(false);
+  async function submit(e: React.FormEvent<HTMLFormElement>) { e.preventDefault(); const form = new FormData(e.currentTarget); await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(Object.fromEntries(form))}); setSent(true); }
+  return <section className="page-pad section-pad"><div className="grid gap-16 md:grid-cols-2"><div><p className="text-xs uppercase tracking-[.3em] text-muted">Contact</p><h1 className="display mt-4 text-6xl font-semibold">Let’s talk.</h1><p className="mt-6 max-w-md text-sm leading-7 text-muted">Questions about an order, a product or working with Texshima? Send us a message.</p></div><form onSubmit={submit} className="space-y-7">{["name","email","message"].map((name)=><div key={name}><label className="mb-2 block text-xs uppercase tracking-[.15em]">{name}</label>{name==="message"?<textarea name={name} required rows={6} className="w-full border-b border-line bg-transparent py-2 outline-none focus:border-black"/>:<input name={name} required type={name==="email"?"email":"text"} className="w-full border-b border-line bg-transparent py-2 outline-none focus:border-black"/>}</div>)}<button className="bg-black px-8 py-3 text-sm font-medium text-white">{sent?"Message sent":"Send message"}</button></form></div></section>;
+}

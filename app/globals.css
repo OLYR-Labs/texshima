@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fff;
+  --foreground: #111;
+  --muted: #6b6b6b;
+  --line: #e8e8e8;
+  --surface: #f7f7f7;
+  --sale: #c62828;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+button, input, select { font: inherit; }
+a { color: inherit; text-decoration: none; }
+
+@layer utilities {
+  .page-pad { @apply px-5 sm:px-8 lg:px-12; }
+  .section-pad { @apply py-16 md:py-24; }
+  .display { @apply font-display tracking-[-0.045em]; }
+  .hairline { border-color: var(--line); }
+  .image-hover { @apply transition-transform duration-700 ease-out group-hover:scale-[1.035]; }
+}
+
+::selection { background: #111; color: #fff; }
